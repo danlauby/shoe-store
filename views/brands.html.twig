@@ -8,6 +8,7 @@
     <body>
         <div class="jumbotron">
             <h1>Shoe Store and Brand Finder</h1>
+            <h3><a href='/'>Home</a></h3>
         </div>
 
         <div class="row">
@@ -19,24 +20,21 @@
                 </form>
             </div>
             <div class="col-md-6">
-                <h2>List of all Brands:</h2>
                 {% if brands is not empty %}
+                <h2>List of all Brands:</h2>
                 <ul>
                     {% for brand in brands %}
                     <li><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></li>
                     {% endfor %}
                 </ul>
                 <form action='/brands/delete' method='post'>
-                    <button class="btn btn-danger" type='submit'>Clear all Brands</button>
+                    <button class="btn btn-danger" type='submit'>Delete all Brands</button>
                 </form>
                 {% endif %}
             </div>
-            <div class="row">
-                <h3><a href='/'>Home</a></h3>
-            </div>
         </div>
         <footer>
-            <p>Copyright &copy; dan Lauby 2017</p>
+            <p>Copyright &copy; Dan Lauby 2017</p>
         </footer>
     </body>
 </html>

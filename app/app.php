@@ -45,7 +45,7 @@
         return $app->redirect('/stores');
     });
 
-    // Redirect to '/stores' when all stores are date_interval_create_from_date_string
+    // Redirect to '/stores' when all stores are deleted
     $app->post('/stores/delete', function() use ($app) {
         Store::deleteAll();
         return $app->redirect('/stores');
@@ -55,6 +55,12 @@
     $app->post("/brand/create", function() use ($app) {
         $new_Brand = new Brand(filter_var($_POST['brand_name'], FILTER_SANITIZE_MAGIC_QUOTES));
         $new_Brand->save();
+        return $app->redirect('/brands');
+    });
+
+    // Redirect to '/stores' when all stores are deleted
+    $app->post('/brands/delete', function() use ($app) {
+        Brand::deleteAll();
         return $app->redirect('/brands');
     });
 
