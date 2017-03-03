@@ -27,13 +27,22 @@
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', ['stores' => Store::getAll(), 'brands' => Brand::getAll()]);
     });
+
     // List all stores, form to add a store and a form to delete all stores
     $app->get('/stores', function() use ($app) {
         return $app['twig']->render('stores.html.twig', ['stores' => Store::getAll()]);
     });
 
+    // List all brands, form to add a brand of shoe and a form to delete all brands
     $app->get("/brands" , function() use ($app) {
-        return $app ['twig'] -> render('brands.html.twig', ['brands' => Brand::getAll()]);
+        return $app ['twig']->render('brands.html.twig', ['brands' => Brand::getAll()]);
+    });
+
+    // Redirect to '/stores' to add new store to stores list
+    $app->post("/store/create", function() use ($app) {
+        $new_Store = new Store($_POST['store_name']);
+        $new_Store->save();
+        return $app->redirect('/stores');
     });
 
 
