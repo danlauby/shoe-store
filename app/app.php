@@ -27,5 +27,10 @@
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', ['stores' => Store::getAll(), 'brands' => Brand::getAll()]);
     });
+    // List all stores, form to add a store and a form to delete all stores
+    $app->get('/stores', function() use ($app) {
+        return $app['twig']->render('stores.html.twig', ['stores' => Store::getAll()]);
+    });
+
 
     return $app;

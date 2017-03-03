@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Store and Brand finder</title>
+        <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="{{app.request.getbaseurl}}/css/styles.css">
+    </head>
+    <body>
+        <h1>Store and Brand finder</h1>
+        <h2>Stores</h2>
+
+        {% if stores is not empty %}
+            <p>All Stores:</p>
+            <ul>
+                {% for store in stores %}
+                    <li><a href="/stores/{{ store.getId }}">{{ store.getName }}</a></li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <form action='/store/create' method='post'>
+            <label for='store_name'>Store name:</label>
+            <input id='store_name' name='store_name' type='text'>
+
+            <button type='submit'>Add Store:</button>
+        </form>
+        <form action='/stores/delete' method='post'>
+            <button type='submit'>Clear all Stores</button>
+        </form>
+
+        <p><a href='/'>Home</a></p>
+    </body>
+</html>
