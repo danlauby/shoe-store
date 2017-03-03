@@ -5,7 +5,7 @@
     * @backupStaticAttributes disabled
     */
     require_once "src/Store.php";
-    // require_once "src/Brand.php";
+    require_once "src/Brand.php";
 
     $server = 'mysql:host=localhost:3306;dbname=shoes_test';
     $username = 'root';
@@ -19,6 +19,7 @@
         protected function teardown()
         {
             Store::deleteAll();
+            Brand::deleteAll();
         }
 
 
@@ -135,6 +136,53 @@
             //Assert
             $this->assertEquals("Trents Awesome Shoes", $test_Store->getName());
         }
+
+        function testAddBrand()
+        {
+            //Arrange
+            $name = "Trents Shoes";
+            $id = 1;
+            $test_Store = new Store($name, $id);
+            $test_Store->save();
+
+            $name = "Puma";
+            $id = 1;
+            $new_Brand = new Brand($name, $id);
+            $new_Brand->save();
+
+            // Act
+            $test_Store->addBrand($new_Brand);
+
+            // Assert
+            $this->assertEquals($test_Store->getBrands(), [$new_Brand]);
+        }
+
+        function testGetBrands()
+        {
+            //Arrange
+            $name = "Trents Shoes";
+            $id = 1;
+            $test_Store = new Store($name, $id);
+            $test_Store->save();
+
+            $brand_name = "Puma";
+            $id2 = 2;
+            $new_Brand = new Brand($name, $id2);
+            $new_Brand->save();
+
+            $brand_name2 = "Adidas";
+            $id3 = 3;
+            $new_Brand2 = new Brand($brand_name2, $id3);
+            $new_Brand2->save();
+
+            // Act
+            $test_Store->addBrand($new_Brand);
+            $test_Store->addBrand($new_Brand2);
+
+            // Assert
+            $this->assertEquals($test_Store->getBrands(), [$new_Brand, $new_Brand2]);
+        }
+
 
 
     }
