@@ -27,7 +27,7 @@
     $app->get('/', function() use ($app) {
         return $app['twig']->render('index.html.twig', ['stores' => Store::getAll(),
                                                         'brands' => Brand::getAll()]);
-    });
+                                                        });
 
     // List all stores, form to add a store and a form to delete all stores
     $app->get('/stores', function() use ($app) {
@@ -40,7 +40,18 @@
         return $app['twig']->render('store.html.twig', ['current_store' => $current_store,
                                                         'brands' => $current_store->getBrands() ,
                                                         'all_brands' => Brand::getAll()]);
-    });
+                                                        });
+
+    // Add stores that sell current brand on individual brand page
+    $app->post('/store/add', function() use ($app) {
+       $current_store = Store::find($_POST['store_id']);
+       $current_brand = Brand::find($_POST['brand_id']);
+       $current_brand->addStore($current_store);
+       return $app['twig']->render('brand.html.twig', ['current_brand' => $current_brand,
+                                                       'brands' => Brand::getAll(),
+                                                       'related_stores' => $current_brand->getStores(),
+                                                       'all_stores' => Store::getAll()]);
+                                                       });
 
     // List all brands, form to add a brand of shoe and a form to delete all brands
     $app->get("/brands" , function() use ($app) {
@@ -53,7 +64,7 @@
         return $app['twig']->render('brand.html.twig', ['current_brand' => $current_brand,
                                                         'stores' => $current_brand->getStores() ,
                                                         'all_stores' => Store::getAll()]);
-    });
+                                                        });
 
     // Redirect to '/stores' to add new store to stores list
     $app->post("/store/create", function() use ($app) {
