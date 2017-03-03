@@ -25,7 +25,8 @@
 
     // Link to store or brand pages
     $app->get('/', function() use ($app) {
-        return $app['twig']->render('index.html.twig', ['stores' => Store::getAll(), 'brands' => Brand::getAll()]);
+        return $app['twig']->render('index.html.twig', ['stores' => Store::getAll(),
+                                                        'brands' => Brand::getAll()]);
     });
 
     // List all stores, form to add a store and a form to delete all stores
@@ -33,14 +34,25 @@
         return $app['twig']->render('stores.html.twig', ['stores' => Store::getAll()]);
     });
 
+    // Individual store page, with form to add brand or update store info
     $app->get('/store/{id}', function($id) use ($app) {
         $current_store = Store::find($id);
-        return $app['twig']->render('store.html.twig', ['current_store' => $current_store, 'brands' => $current_store->getBrands() , 'all_brands' => Brand::getAll()]);
+        return $app['twig']->render('store.html.twig', ['current_store' => $current_store,
+                                                        'brands' => $current_store->getBrands() ,
+                                                        'all_brands' => Brand::getAll()]);
     });
 
     // List all brands, form to add a brand of shoe and a form to delete all brands
     $app->get("/brands" , function() use ($app) {
         return $app ['twig']->render('brands.html.twig', ['brands' => Brand::getAll()]);
+    });
+
+    // Individual brand page, with form to add store or update brand info
+    $app->get('/brand/{id}', function($id) use ($app) {
+        $current_brand = Brand::find($id);
+        return $app['twig']->render('brand.html.twig', ['current_brand' => $current_brand,
+                                                        'stores' => $current_brand->getStores() ,
+                                                        'all_stores' => Store::getAll()]);
     });
 
     // Redirect to '/stores' to add new store to stores list

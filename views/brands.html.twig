@@ -24,7 +24,7 @@
                 <h2>List of all Brands:</h2>
                 <ul>
                     {% for brand in brands %}
-                    <li><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></li>
+                    <li><a href="/brand/{{ brand.getId }}">{{ brand.getName }}</a></li>
                     {% endfor %}
                 </ul>
                 <form action='/brands/delete' method='post'>

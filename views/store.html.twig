@@ -1,13 +1,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Shoe Stores</title>
+        <title>Shoe Store Inventory</title>
         <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
         <link rel="stylesheet" href="{{app.request.getbaseurl}}/css/styles.css">
     </head>
     <body>
         <div class="jumbotron">
-            <h1>Shoe Stores</h1>
+            <h1>Shoe Store Inventory</h1>
             <h4><a href='/'>Home</a></h4>
         </div>
         <h2>Brands sold by <span class="display-name">{{ current_store.getName }}</span></h2>
@@ -28,8 +28,6 @@
           </select><br>
             <button class="btn btn-success" type='submit'>Add Brand</button>
         </form>
-
-        <p><a href="/author/{{ current_store.getId }}/edit"><button class="btn btn-warning">Update store info</button></a></p>
-
+        <p><a href="/store/{{ current_store.getId }}/edit"><button class="btn btn-warning">Update store info</button></a></p>
     </body>
 </html>
