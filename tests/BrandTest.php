@@ -118,5 +118,27 @@
             $this->assertEquals([], $result);
         }
 
+        function testFind()
+        {
+            //Arrange
+            $name = "Puma";
+            $id = 1;
+            $test_Brand = new Brand($name, $id);
+            $test_Brand->save();
+
+            $name2 = "Adidas";
+            $id2 = 2;
+            $test_Brand2 = new Brand($name2, $id2);
+            $test_Brand2->save();
+
+            //Act
+            $result = Brand::find($test_Brand->getId());
+
+            //Assert
+            $this->assertEquals($test_Brand, $result);
+        }
+
+
+
 
     }
