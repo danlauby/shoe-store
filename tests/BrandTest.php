@@ -48,4 +48,18 @@
             $this->assertEquals("Adidas", $result);
         }
 
+        function testId()
+        {
+            // Arrange
+            $name = "Puma";
+            $id = 1;
+            $test_Brand = new Brand($name, $id);
+
+            //Act
+            $result = $test_Brand->getId();
+
+            //Assert
+            $this->assertEquals(1, $result);
+        }
+
     }
