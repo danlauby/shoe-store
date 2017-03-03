@@ -136,9 +136,5 @@
             $this->assertEquals("Trents Awesome Shoes", $test_Store->getName());
         }
 
-    
-
-
-
 
     }
