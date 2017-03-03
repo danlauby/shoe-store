@@ -137,6 +137,29 @@
             $this->assertEquals("Trents Awesome Shoes", $test_Store->getName());
         }
 
+
+        function testDelete()
+        {
+            //Arrange
+            $name = "Trents Shoes";
+            $id = 1;
+            $test_Store = new Store($name, $id);
+            $test_Store->save();
+
+            $brand_name = "Puma";
+            $id2 = 2;
+            $test_Brand = new Brand($brand_name, $id2);
+            $test_Brand->save();
+
+            //Act
+            $test_Store->addBrand($test_Brand);
+            $test_Store->delete();
+
+            //Assert
+            $this->assertEquals([], $test_Brand->getStores());
+        }
+
+
         function testAddBrand()
         {
             //Arrange

@@ -20,7 +20,8 @@ This program allows a store to keep track of which brands of shoes they sell and
 |Save all shoe brand names to database|"Puma", "Adidas"|"Puma", "Adidas"|
 |Delete all store names to database|"Trents Shoes", "Trents Awesome Shoes"|" "|
 |Delete all shoe brand names to database|"Puma", "Adidas"|" "|
-|Allow user to change name of a store|"Trents Shoes"|"Trents Awesome Shoes"|
+|Allow user to update name of a store|"Trents Shoes"|"Trents Awesome Shoes"|
+|Allow user to delete a store|"Trents Shoes"|" "|
 |Find one store from all stores|FIND:"Trents Shoes" -> "Trents Shoes", "Trents Awesome Shoes"|FOUND:"Trents Shoes"|
 |Find one brand of shoes from all brands of shoes|FIND:Puma -> "Puma", "Adidas"|FOUND:Puma|
 |Get all brands for a store|STORE:Trents Shoes|STORE:Trents Shoes -> "Puma", "Adidas"|
