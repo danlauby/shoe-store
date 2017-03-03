@@ -120,6 +120,25 @@
             $this->assertEquals([], $result);
         }
 
+        function testUpdate()
+        {
+            //Arrange
+            $name = "Trents Shoes";
+            $id = 1;
+            $test_Store = new Store($name, $id);
+            $test_Store->save();
+            $new_name = "Trents Awesome Shoes";
+
+            //Act
+            $test_Store->update($new_name);
+
+            //Assert
+            $this->assertEquals("Trents Awesome Shoes", $test_Store->getName());
+        }
+
+    
+
+
 
 
     }
