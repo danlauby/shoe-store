@@ -33,6 +33,11 @@
         return $app['twig']->render('stores.html.twig', ['stores' => Store::getAll()]);
     });
 
+    $app->get('/store/{id}', function($id) use ($app) {
+        $current_store = Store::find($id);
+        return $app['twig']->render('store.html.twig', ['current_store' => $current_store, 'brands' => $current_store->getBrands() , 'all_brands' => Brand::getAll()]);
+    });
+
     // List all brands, form to add a brand of shoe and a form to delete all brands
     $app->get("/brands" , function() use ($app) {
         return $app ['twig']->render('brands.html.twig', ['brands' => Brand::getAll()]);

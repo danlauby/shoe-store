@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Shoe Stores</title>
+        <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
+        <link rel="stylesheet" href="{{app.request.getbaseurl}}/css/styles.css">
+    </head>
+    <body>
+        <div class="jumbotron">
+            <h1>Shoe Stores</h1>
+            <h4><a href='/'>Home</a></h4>
+        </div>
+        <h2>Brands sold by <span class="display-name">{{ current_store.getName }}</span></h2>
+        {% if brands is not empty %}
+            <ul>
+                {% for brand in brands %}
+                    <li>{{ brand.getName }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <form class="form-group" action='/brand/add' method='post'>
+            <input id="store_id" name="store_id" type="hidden" value="{{ current_store.getId }}">
+            <label for="brand_id">Add new brands to your inventory:</label>
+            <select class="form-control" id='brand_id' name='brand_id' type='text'>
+              {% for brand in all_brands %}
+                <option value="{{ brand.getId }}"> {{ brand.getName }}</option>
+              {% endfor %}
+          </select><br>
+            <button class="btn btn-success" type='submit'>Add Brand</button>
+        </form>
+
+        <p><a href="/author/{{ current_store.getId }}/edit"><button class="btn btn-warning">Update store info</button></a></p>
+
+    </body>
+</html>
