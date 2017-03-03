@@ -49,4 +49,18 @@
             $this->assertEquals("Trents Awesome Shoes", $result);
         }
 
+        function testGetId()
+        {
+            //Arrange
+            $name = "Trents Shoes";
+            $id = 1;
+            $test_Store = new Store($name, $id);
+
+            //Act
+            $result = $test_Store->getId();
+
+            //Assert
+            $this->assertEquals(1, $result);
+        }
+
     }

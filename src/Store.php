@@ -22,7 +22,7 @@
 
         function getId()
         {
-
+            return $this->id;
         }
     }
  ?>
