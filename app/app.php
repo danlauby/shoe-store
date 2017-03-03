@@ -38,20 +38,21 @@
     $app->get('/store/{id}', function($id) use ($app) {
         $current_store = Store::find($id);
         return $app['twig']->render('store.html.twig', ['current_store' => $current_store,
-                                                        'brands' => $current_store->getBrands() ,
+                                                        'brands' => $current_store->getBrands(),
+                                                        'related_brands' => $current_store->getBrands(),
                                                         'all_brands' => Brand::getAll()]);
                                                         });
 
-    // Add stores that sell current brand on individual brand page
-    $app->post('/store/add', function() use ($app) {
-       $current_store = Store::find($_POST['store_id']);
-       $current_brand = Brand::find($_POST['brand_id']);
-       $current_brand->addStore($current_store);
-       return $app['twig']->render('brand.html.twig', ['current_brand' => $current_brand,
-                                                       'brands' => Brand::getAll(),
-                                                       'related_stores' => $current_brand->getStores(),
-                                                       'all_stores' => Store::getAll()]);
-                                                       });
+    // Add brands that are sold at current store on individual store page
+    $app->post('/brand/add', function() use ($app) {
+           $current_store = Store::find($_POST['store_id']);
+           $current_brand = Brand::find($_POST['brand_id']);
+           $current_store->addBrand($current_brand);
+           return $app['twig']->render('store.html.twig', ['current_store' => $current_store,
+                                                           'stores' => Store::getAll(),
+                                                           'related_brands' => $current_store->getBrands(),
+                                                           'all_brands' => Brand::getAll()]);
+                                                           });
 
     // List all brands, form to add a brand of shoe and a form to delete all brands
     $app->get("/brands" , function() use ($app) {
@@ -62,7 +63,19 @@
     $app->get('/brand/{id}', function($id) use ($app) {
         $current_brand = Brand::find($id);
         return $app['twig']->render('brand.html.twig', ['current_brand' => $current_brand,
-                                                        'stores' => $current_brand->getStores() ,
+                                                        'stores' => $current_brand->getStores(),
+                                                        'related_stores' => $current_brand->getStores(),
+                                                        'all_stores' => Store::getAll()]);
+                                                        });
+
+    // Add stores that sell current brand on individual brand page
+    $app->post('/store/add', function() use ($app) {
+        $current_store = Store::find($_POST['store_id']);
+        $current_brand = Brand::find($_POST['brand_id']);
+        $current_brand->addStore($current_store);
+        return $app['twig']->render('brand.html.twig', ['current_brand' => $current_brand,
+                                                        'brands' => Brand::getAll(),
+                                                        'related_stores' => $current_brand->getStores(),
                                                         'all_stores' => Store::getAll()]);
                                                         });
 

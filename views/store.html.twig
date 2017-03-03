@@ -11,9 +11,9 @@
             <h4><a href='/'>Home</a></h4>
         </div>
         <h2>Brands sold by <span class="display-name">{{ current_store.getName }}</span></h2>
-        {% if brands is not empty %}
+        {% if related_brands is not empty %}
             <ul>
-                {% for brand in brands %}
+                {% for brand in related_brands %}
                     <li>{{ brand.getName }}</li>
                 {% endfor %}
             </ul>
