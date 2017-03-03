@@ -40,14 +40,20 @@
 
     // Redirect to '/stores' to add new store to stores list
     $app->post("/store/create", function() use ($app) {
-        $new_Store = new Store($_POST['store_name']);
+        $new_Store = new Store(filter_var($_POST['store_name'], FILTER_SANITIZE_MAGIC_QUOTES));
         $new_Store->save();
+        return $app->redirect('/stores');
+    });
+
+    // Redirect to '/stores' when all stores are date_interval_create_from_date_string
+    $app->post('/stores/delete', function() use ($app) {
+        Store::deleteAll();
         return $app->redirect('/stores');
     });
 
     // Redirect to '/brands' to add a new brand of shoe to brands list
     $app->post("/brand/create", function() use ($app) {
-        $new_Brand = new Brand($_POST['brand_name']);
+        $new_Brand = new Brand(filter_var($_POST['brand_name'], FILTER_SANITIZE_MAGIC_QUOTES));
         $new_Brand->save();
         return $app->redirect('/brands');
     });

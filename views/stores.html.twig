@@ -25,10 +25,10 @@
                     <li><a href="/stores/{{ store.getId }}">{{ store.getName }}</a></li>
                     {% endfor %}
                 </ul>
+                {% endif %}
                 <form action='/stores/delete' method='post'>
                     <button class="btn btn-danger" type='submit'>Clear all Stores</button>
                 </form>
-                {% endif %}
             </div>
         </div>
         <div class="row">
