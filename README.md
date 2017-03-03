@@ -27,7 +27,6 @@ This program allows a store to keep track of which brands of shoes they sell and
 |Get all brands for a store|STORE:Trents Shoes|STORE:Trents Shoes -> "Puma", "Adidas"|
 |Get all stores for a brand of shoe|BRAND:Puma|BRAND:Puma -> "Trents Shoes", "Everday Shoes"|
 
-
 ## _mysql commands_
 
 |command |Description|

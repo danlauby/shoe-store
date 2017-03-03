@@ -206,6 +206,24 @@
             $this->assertEquals($test_Store->getBrands(), [$new_Brand, $new_Brand2]);
         }
 
+        function testFind()
+        {
+            //Arrange
+            $name = "Trents Shoes";
+            $id = 1;
+            $test_Store = new Store($name, $id);
+            $test_Store->save();
 
+            $name2 = "Trents Awesome Shoes";
+            $id2 = 2;
+            $test_Store2 = new Store($name2, $id2);
+            $test_Store2->save();
+
+            //Act
+            $result = Store::find($test_Store->getId());
+
+            //Assert
+            $this->assertEquals($test_Store, $result);
+        }
 
     }
