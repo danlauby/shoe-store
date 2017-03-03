@@ -32,5 +32,9 @@
         return $app['twig']->render('stores.html.twig', ['stores' => Store::getAll()]);
     });
 
+    $app->get("/brands" , function() use ($app) {
+        return $app ['twig'] -> render('brands.html.twig', ['brands' => Brand::getAll()]);
+    });
+
 
     return $app;
