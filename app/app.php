@@ -45,5 +45,12 @@
         return $app->redirect('/stores');
     });
 
+    // Redirect to '/brands' to add a new brand of shoe to brands list
+    $app->post("/brand/create", function() use ($app) {
+        $new_Brand = new Brand($_POST['brand_name']);
+        $new_Brand->save();
+        return $app->redirect('/brands');
+    });
+
 
     return $app;

@@ -6,28 +6,38 @@
     <link rel="stylesheet" href="{{app.request.getbaseurl}}/css/styles.css">
 </head>
 <body>
-    <h1>Shoe Store and Brand Finder</h1>
-    <h2>Brands</h2>
+    <div class="jumbotron">
+        <h1>Shoe Store and Brand Finder</h1>
+    </div>
 
-    {% if brands is not empty %}
-        <p>All Brands:</p>
-        <ul>
-            {% for brand in brands %}
+    <div class="row">
+        <div class="col-md-6">
+            <form class="form-group" action='/brand/create' method='post'>
+                <label for='brand_name'>Brand Name:</label>
+                <input class="form-control" id='brand_name' name='brand_name' type='text' required><br>
+                <button class="btn btn-success" type='submit'>Add a New Brand</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <h2>List of all Brands:</h2>
+            {% if brands is not empty %}
+            <ul>
+                {% for brand in brands %}
                 <li><a href="/brands/{{ brand.getId }}">{{ brand.getName }}</a></li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+                {% endfor %}
+            </ul>
+            <form action='/brands/delete' method='post'>
+                <button class="btn btn-danger" type='submit'>Clear all Brands</button>
+            </form>
+            {% endif %}
+        </div>
+        <div class="row">
+        </div>
+        <h3><a href='/'>Home</a></h3>
+    </div>
 
-    <form action='/brands/create' method='post'>
-        <label for='brand_name'>Brand Name:</label>
-        <input id='brand_name' name='brand_name' type='text'>
-
-        <button type='submit'>Add a New Brand:</button>
-    </form>
-    <form action='/brands/delete' method='post'>
-        <button type='submit'>Clear all Brands</button>
-    </form>
-
-    <p><a href='/'>Home</a></p>
+    <footer>
+        <p>Copyright &copy; dan Lauby 2017</p>
+    </footer>
 </body>
 </html>
