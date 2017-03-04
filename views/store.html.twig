@@ -3,31 +3,37 @@
         <meta charset="utf-8">
         <title>Shoe Store Inventory</title>
         <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
-        <link rel="stylesheet" href="{{app.request.getbaseurl}}/css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Arsenal|Exo|Orbitron" rel="stylesheet">
+        <link rel="stylesheet" href="{{app.request.getbaseurl}}/assets/css/styles.css">
     </head>
     <body>
         <div class="jumbotron">
             <h1>Shoe Store Inventory</h1>
             <h4><a href='/'>Home</a></h4>
         </div>
-        <h2>Brands sold by <span class="display-name">{{ current_store.getName }}</span></h2>
-        {% if related_brands is not empty %}
+        <div class="container">
+            <h2>Brands sold by <span class="display-name">{{ current_store.getName }}</span></h2>
+            {% if related_brands is not empty %}
             <ul>
                 {% for brand in related_brands %}
-                    <li>{{ brand.getName }}</li>
+                <li>{{ brand.getName }}</li>
                 {% endfor %}
             </ul>
-        {% endif %}
-        <form class="form-group" action='/brand/add' method='post'>
-            <input id="store_id" name="store_id" type="hidden" value="{{ current_store.getId }}">
-            <label for="brand_id">Add new brands to your inventory:</label>
-            <select class="form-control" id='brand_id' name='brand_id' type='text'>
-              {% for brand in all_brands %}
-                <option value="{{ brand.getId }}"> {{ brand.getName }}</option>
-              {% endfor %}
-          </select><br>
-            <button class="btn btn-success" type='submit'>Add Brand</button>
-        </form>
-        <p><a href="/store/{{ current_store.getId }}/edit"><button class="btn btn-warning">Update store info</button></a></p>
+            {% endif %}
+            <form class="form-group" action='/brand/add' method='post'>
+                <input id="store_id" name="store_id" type="hidden" value="{{ current_store.getId }}">
+                <label for="brand_id">Add new brands to your inventory:</label>
+                <select class="form-control" id='brand_id' name='brand_id' type='text'>
+                    {% for brand in all_brands %}
+                    <option value="{{ brand.getId }}"> {{ brand.getName }}</option>
+                    {% endfor %}
+                </select><br>
+                <button class="btn btn-success" type='submit'>Add Brand</button>
+            </form>
+            <p><a href="/store/{{ current_store.getId }}/edit"><button class="btn btn-warning">Update store info</button></a></p>
+        </div>
+        <footer>
+            <p>Copyright &copy; Dan Lauby 2017</p>
+        </footer>
     </body>
 </html>

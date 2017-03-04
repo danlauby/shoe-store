@@ -3,36 +3,39 @@
         <meta charset="utf-8">
         <title>Shoe Store Inventory</title>
         <link rel="stylesheet" href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css'>
-        <link rel="stylesheet" href="{{app.request.getbaseurl}}/css/styles.css">
+        <link href="https://fonts.googleapis.com/css?family=Arsenal|Exo|Orbitron" rel="stylesheet">
+        <link rel="stylesheet" href="{{app.request.getbaseurl}}/assets/css/styles.css">
     </head>
     <body>
         <div class="jumbotron">
             <h1>Shoe Store Inventory</h1>
             <h4><a href='/'>Home</a></h4>
         </div>
-        <div class="row">
-            <div class="col-md-6">
-                <form class="form-group" action='/store/create' method='post'>
-                    <label for='store_name'>Store name:</label>
-                    <input class="form-control" id='store_name' name='store_name' type='text' required><br>
-                    <button class="btn btn-success" type='submit'>Add Store:</button>
-                </form>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-group" action='/store/create' method='post'>
+                        <label for='store_name'>Store name:</label>
+                        <input class="form-control" id='store_name' name='store_name' type='text' required><br>
+                        <button class="btn btn-success" type='submit'>Add Store:</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    {% if stores is not empty %}
+                    <h2>List of all Stores:</h2>
+                    <ul>
+                        {% for store in stores %}
+                        <li><a href="/store/{{ store.getId }}">{{ store.getName }}</a></li>
+                        {% endfor %}
+                    </ul>
+                    <form action='/stores/delete' method='post'>
+                        <button class="btn btn-danger" type='submit'>Delete all Stores</button>
+                    </form>
+                    {% endif %}
+                </div>
             </div>
-            <div class="col-md-6">
-                {% if stores is not empty %}
-                <h2>List of all Stores:</h2>
-                <ul>
-                    {% for store in stores %}
-                    <li><a href="/store/{{ store.getId }}">{{ store.getName }}</a></li>
-                    {% endfor %}
-                </ul>
-                <form action='/stores/delete' method='post'>
-                    <button class="btn btn-danger" type='submit'>Delete all Stores</button>
-                </form>
-                {% endif %}
+            <div class="row">
             </div>
-        </div>
-        <div class="row">
         </div>
         <footer>
             <p>Copyright &copy; Dan Lauby 2017</p>

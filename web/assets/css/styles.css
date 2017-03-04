@@ -1,0 +1,46 @@
+/*font-family: 'Arsenal', sans-serif;
+font-family: 'Exo', sans-serif;
+font-family: 'Orbitron', sans-serif;*/
+
+
+
+html, body {
+    height: 100%;
+}
+
+html .container {
+  min-height: 100%;
+}
+body {
+  background-image: url('../img/shoe.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+    background-color: rgba(240, 231, 230, 0.8);
+    border-radius: 5px;
+}
+
+.jumbotron {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    background-color: rgb(42, 40, 42);
+    color: rgb(167, 208, 179);
+}
+
+.link {
+    text-align: center;
+}
+
+h2 {
+    font-family: 'Exo', sans-serif;
+}
+
+footer {
+    background-color: rgb(42, 40, 42);
+    color: rgb(167, 208, 179);
+    text-align: center;
+    padding-top: 20px;
+    margin-bottom: 0;
+}
