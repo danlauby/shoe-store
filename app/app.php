@@ -54,6 +54,23 @@
                                                            'all_brands' => Brand::getAll()]);
                                                            });
 
+    $app->get('/store/{id}/edit', function($id) use ($app) {
+        $current_store = Store::find($id);
+        return $app['twig']->render('store_edit.html.twig', [ 'current_store' => $current_store,]);
+    });
+
+    $app->patch("store/{id}/edit", function($id) use ($app) {
+        $store_name = $_POST['store_name'];
+        // $find_author = Author::find($name);
+        $current_store = Store::find($id);
+        $current_store->update($store_name);
+        return $app['twig']->render('store.html.twig' , ['store' => $current_store,
+                                                           'related_brands' => $current_store->getBrands(),
+                                                           'current_store' => $current_store,
+                                                           'all_brands' => Brand::getAll()]);
+                                                           });
+
+
     // List all brands, form to add a brand of shoe and a form to delete all brands
     $app->get("/brands" , function() use ($app) {
         return $app ['twig']->render('brands.html.twig', ['brands' => Brand::getAll()]);
