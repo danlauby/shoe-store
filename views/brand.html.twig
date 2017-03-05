@@ -12,24 +12,32 @@
             <h4><a href='/'>Home</a></h4>
         </div>
         <div class="container">
-            <h2>Stores that sell the <span class="display-name">{{ current_brand.getName }} brand</span></h2>
-            {% if related_stores is not empty %}
-            <ul>
-                {% for store in related_stores %}
-                <li>{{ store.getName }}</li>
-                {% endfor %}
-            </ul>
-            {% endif %}
-            <form class="form-group" action='/store/add' method='post'>
-                <input id="brand_id" name="brand_id" type="hidden" value="{{ current_brand.getId }}">
-                <label for="store_id">Choose a store to carry your brand:</label>
-                <select class="form-control" id='store_id' name='store_id' type='text'>
-                    {% for store in all_stores %}
-                    <option value="{{ store.getId }}"> {{ store.getName }}</option>
-                    {% endfor %}
-                </select><br>
-                <button class="btn btn-success" type='submit'>Add Store</button>
-            </form>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-group" action='/store/add' method='post'>
+                        <input id="brand_id" name="brand_id" type="hidden" value="{{ current_brand.getId }}">
+                        <label for="store_id">Choose a store to carry your brand:</label>
+                        <select class="form-control" id='store_id' name='store_id' type='text'>
+                            {% for store in all_stores %}
+                            <option value="{{ store.getId }}"> {{ store.getName }}</option>
+                            {% endfor %}
+                        </select><br>
+                        <button class="btn btn-success" type='submit'>Add Store</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <h2>Stores that sell the <span class="display-name">{{ current_brand.getName }} </span> brand</h2>
+                    {% if related_stores is not empty %}
+                    <ul>
+                        {% for store in related_stores %}
+                        <li>- {{ store.getName }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% else %}
+                        <p class="empty no-stores">No stores</p>
+                    {% endif %}
+                </div>
+            </div>
         </div>
         <footer>
             <p>Copyright &copy; Dan Lauby 2017</p>

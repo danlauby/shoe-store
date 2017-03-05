@@ -29,8 +29,10 @@
                         {% endfor %}
                     </ul>
                     <form action='/stores/delete' method='post'>
-                        <button class="btn btn-danger" type='submit'>Delete all Stores</button>
+                        <button class="btn btn-danger delete" type='submit'>Delete all Stores</button>
                     </form>
+                    {% else %}
+                    <h2 class="empty"><- Please add a store</h2>
                     {% endif %}
                 </div>
             </div>
